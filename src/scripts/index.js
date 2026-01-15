@@ -1,4 +1,4 @@
-import { createCardElement, removeCard, likeCard } from "./components/card.js";
+import { createCardElement, likeCard, removeCard } from "./components/card.js";
 import { openModalWindow, closeModalWindow, setCloseModalWindowEventListeners } from "./components/modal.js";
 import { enableValidation, clearValidation } from "./components/validation.js";
 import { getUserInfo, getCardList, setUserInfo, setUserAvatar, addCard, deleteCard, changeLikeCardStatus} from "./components/api.js";
@@ -94,7 +94,7 @@ const handleDeleteCardSubmit = (evt) => {
   if (cardToDeleteId && cardToDeleteElement) {
     deleteCard(cardToDeleteId) //api
       .then(() => {
-        cardToDeleteElement.remove();
+        removeCard(cardToDeleteElement);
         closeModalWindow(deleteCardModalWindow);
         cardToDeleteId = '';
         cardToDeleteElement = null;
@@ -196,7 +196,7 @@ const handleCardLike = (cardId, likeButton, likeCountElement) => {
   
   changeLikeCardStatus(cardId, isLiked) //api
     .then((updatedCard) => {
-      likeButton.classList.toggle("card__like-button_is-active");
+      likeCard(likeButton);
       likeCountElement.textContent = updatedCard.likes.length;
     })
     .catch((err) => {
