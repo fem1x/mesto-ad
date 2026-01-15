@@ -204,6 +204,7 @@ const handleCardLike = (cardId, likeButton, likeCountElement) => {
     });
 };
 
+
 //EVENT LISTENERS
 //отправка форм
 profileForm.addEventListener("submit", handleProfileFormSubmit);
