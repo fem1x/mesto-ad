@@ -264,11 +264,6 @@ const handleInfoClick = (cardId) => {
   getCardList() //api
     .then((cards) => {
       const cardData = cards.find(card => card._id === cardId); //поиск по id
-      
-      if (!cardData) {
-        console.error("Карточка не найдена");
-        return;
-      }
 
       cardInfoModalTitle.textContent = "Информация о карточке";
       //очистка старых данных
