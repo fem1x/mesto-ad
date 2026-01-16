@@ -55,11 +55,17 @@ const setButtonLoading = (buttonElement, isLoading) => {
   if (isLoading) {
     buttonElement.dataset.originalText = buttonElement.textContent.trim(); //data-original-text
     const originalText = buttonElement.dataset.originalText;
-
-    buttonElement.textContent = originalText === 'Сохранить' ? 'Сохранение...' : 
-                               originalText === 'Создать' ? 'Создание...' : 
-                               originalText === 'Да' ? 'Удаление...' : 'Загрузка...';
     
+    if (originalText === 'Сохранить') {
+    buttonElement.textContent = 'Сохранение...';
+    } else if (originalText === 'Создать') {
+        buttonElement.textContent = 'Создание...';
+    } else if (originalText === 'Да') {
+        buttonElement.textContent = 'Удаление...';
+    } else {
+        buttonElement.textContent = 'Загрузка...';
+    }
+
     buttonElement.dataset.wasDisabled = buttonElement.disabled; //data-was-disabled
     buttonElement.disabled = true;
   } else {
